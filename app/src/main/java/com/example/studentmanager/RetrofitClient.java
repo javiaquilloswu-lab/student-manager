@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
     // 10.0.2.2 maps to local machine localhost from Android Emulator
-    private static final String BASE_URL = "http://192.168.1.15/android_api/";
+    private static final String BASE_URL = "http://--/android_api/";
     private static Retrofit retrofit;
 
     public static Retrofit getClient() {
