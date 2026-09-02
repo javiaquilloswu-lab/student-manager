@@ -1,4 +1,4 @@
-package com.example.studentmanager; // Fixed package name
+package com.example.studentmanager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,10 +8,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
-public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.VH> {
+public class StudentAdaptor extends RecyclerView.Adapter<StudentAdaptor.VH> {
     private final List<Student> list;
 
-    public StudentAdapter(List<Student> list) {
+    public StudentAdaptor(List<Student> list) {
         this.list = list;
     }
 

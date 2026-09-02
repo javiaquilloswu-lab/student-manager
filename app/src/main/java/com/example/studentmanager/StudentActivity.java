@@ -28,7 +28,7 @@ public class StudentActivity extends AppCompatActivity {
         email = findViewById(R.id.etEmail);
         course = findViewById(R.id.etCourse);
 
-        api = RetrofitClient.getClient().create(ApiService.class);
+        api = RetrofitClient.getClient().create(com.example.studentapp.ApiResponse.class);
 
         findViewById(R.id.btnSave).setOnClickListener(v -> saveStudent());
 

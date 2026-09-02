@@ -1,4 +1,4 @@
-package com.example.studentapp;
+package com.example.studentmanager;
 
 public class ApiResponse {
     private boolean success;

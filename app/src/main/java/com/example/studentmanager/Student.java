@@ -1,4 +1,4 @@
-package com.example.studentapp;
+package com.example.studentmanager;
 
 public class Student {
     private int id;
@@ -6,7 +6,8 @@ public class Student {
     private String email;
     private String course;
 
-    public Student(String name, String email, String course) {
+    public Student(int id, String name, String email, String course) {
+        this.id = id;
         this.name = name;
         this.email = email;
         this.course = course;
