@@ -4,7 +4,7 @@ public class ApiResponse {
     private boolean success;
     private String message;
 
-    // No-arg constructor required by Gson
+    // Default no-arg constructor required by Gson
     public ApiResponse() {}
 
     public ApiResponse(boolean success, String message) {
@@ -12,11 +12,6 @@ public class ApiResponse {
         this.message = message;
     }
 
-    public boolean isSuccess() {
-        return success;
-    }
-
-    public String getMessage() {
-        return message;
-    }
+    public boolean isSuccess() { return success; }
+    public String getMessage() { return message; }
 }

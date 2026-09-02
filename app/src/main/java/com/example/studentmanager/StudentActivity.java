@@ -1,6 +1,7 @@
 package com.example.studentmanager;
 
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,24 +15,32 @@ import retrofit2.Response;
 public class StudentActivity extends AppCompatActivity {
     private RecyclerView rv;
     private EditText name, email, course;
+    private Button btnSave;
     private ApiService api;
 
     @Override
-    protected void onCreate(Bundle b) {
-        super.onCreate(b);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student);
 
+        // Bind layout views
         rv = findViewById(R.id.recyclerStudents);
         rv.setLayoutManager(new LinearLayoutManager(this));
 
         name = findViewById(R.id.etName);
         email = findViewById(R.id.etEmail);
         course = findViewById(R.id.etCourse);
+        btnSave = findViewById(R.id.btnSave);
 
-        api = RetrofitClient.getClient().create(com.example.studentapp.ApiResponse.class);
+        // Initialize Retrofit API Service
+        api = RetrofitClient.getClient().create(ApiService.class);
 
-        findViewById(R.id.btnSave).setOnClickListener(v -> saveStudent());
+        // Set click listener
+        if (btnSave != null) {
+            btnSave.setOnClickListener(v -> saveStudent());
+        }
 
+        // Fetch student list from database
         loadStudents();
     }
 
@@ -40,13 +49,16 @@ public class StudentActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Student>> c, Response<List<Student>> r) {
                 if (r.isSuccessful() && r.body() != null) {
-                    rv.setAdapter(new StudentAdapter(r.body()));
+                    // Uses StudentAdaptor matching your filename in the project tree
+                    rv.setAdapter(new StudentAdaptor(r.body()));
+                } else {
+                    Toast.makeText(StudentActivity.this, "Failed to load data", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<List<Student>> c, Throwable t) {
-                Toast.makeText(StudentActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(StudentActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -70,12 +82,14 @@ public class StudentActivity extends AppCompatActivity {
                     email.setText("");
                     course.setText("");
                     loadStudents();
+                } else {
+                    Toast.makeText(StudentActivity.this, "Failed to save student", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<ApiResponse> call, Throwable t) {
-                Toast.makeText(StudentActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(StudentActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }

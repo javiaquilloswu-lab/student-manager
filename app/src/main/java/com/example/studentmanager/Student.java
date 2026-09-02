@@ -6,6 +6,14 @@ public class Student {
     private String email;
     private String course;
 
+    // Constructor for POST request (without ID)
+    public Student(String name, String email, String course) {
+        this.name = name;
+        this.email = email;
+        this.course = course;
+    }
+
+    // Constructor for GET response (with ID)
     public Student(int id, String name, String email, String course) {
         this.id = id;
         this.name = name;
