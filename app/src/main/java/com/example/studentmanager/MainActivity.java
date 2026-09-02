@@ -1,4 +1,4 @@
-asdapackage com.example.studentmanager;
+package com.example.studentmanager;
 
 import android.os.Bundle;
 

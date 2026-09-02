@@ -31,11 +31,28 @@ android {
     }
 }
 
+// Force transitive core dependencies to stay compatible with compileSdk 34
+configurations.all {
+    resolutionStrategy {
+        force("androidx.core:core:1.13.1")
+        force("androidx.core:core-ktx:1.13.1")
+    }
+}
+
 dependencies {
+    // Explicit compatible core dependencies
+    implementation("androidx.core:core-ktx:1.13.1")
+    implementation("androidx.core:core:1.13.1")
+
+    // Retrofit & UI
+    implementation("com.squareup.retrofit2:retrofit:2.11.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.11.0")
+    implementation("androidx.recyclerview:recyclerview:1.3.2")
 
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
+
     implementation(libs.constraintlayout)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
