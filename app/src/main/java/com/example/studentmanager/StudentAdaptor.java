@@ -1,4 +1,4 @@
-package com.example.studentapp;
+package com.example.studentmanager; // Fixed package name
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,9 +11,12 @@ import java.util.List;
 public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.VH> {
     private final List<Student> list;
 
-    public StudentAdapter(List<Student> list) { this.list = list; }
+    public StudentAdapter(List<Student> list) {
+        this.list = list;
+    }
 
-    @NonNull @Override
+    @NonNull
+    @Override
     public VH onCreateViewHolder(@NonNull ViewGroup p, int v) {
         View view = LayoutInflater.from(p.getContext()).inflate(R.layout.item_student, p, false);
         return new VH(view);
@@ -28,7 +31,9 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.VH> {
     }
 
     @Override
-    public int getItemCount() { return list.size(); }
+    public int getItemCount() {
+        return list != null ? list.size() : 0;
+    }
 
     static class VH extends RecyclerView.ViewHolder {
         TextView name, email, course;
