@@ -1,9 +1,16 @@
 package com.example.studentmanager;
 
-public class ApiResponse {
-    private boolean success;
-    private String message;
+import java.util.List;
+import retrofit2.Call;
+import retrofit2.http.Body;
+import retrofit2.http.GET;
+import retrofit2.http.POST;
 
-    public boolean isSuccess() { return success; }
-    public String getMessage() { return message; }
+public interface ApiService {
+
+    @GET("get_student.php")
+    Call<List<Student>> getStudents();
+
+    @POST("add_student.php")
+    Call<ApiResponse> addStudent(@Body Student student);
 }
