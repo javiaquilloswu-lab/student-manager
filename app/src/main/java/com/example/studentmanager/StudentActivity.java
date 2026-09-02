@@ -33,7 +33,7 @@ public class StudentActivity extends AppCompatActivity {
         btnSave = findViewById(R.id.btnSave);
 
         // Initialize Retrofit API Service
-        api = RetrofitClient.getClient().create(ApiService.class);
+        api = com.example.studentmanager.RetrofitClient.getClient().create(ApiService.class);
 
         // Set click listener
         if (btnSave != null) {
